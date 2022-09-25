@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "ENTER TITLE",
+    "projection": {"type": "equalEarth"},
+    "data": {
+      "url": "js/ne_110m.json",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
+    "params": [
+        {
+          "name": "gdp_filter",
+          "value": 0,
+          "bind": {
+          "input": "range",
+          "min": 0,
+          "max": 40000,
+          "step": 2000,
+          "name": "gdp filter"
+          }
+        }      
+      ],
+    "transform": [
+      {
+        "lookup": "properties.NAME",
+        "from": {
+          "data": {
+            "url": "data/GDP_2020.csv"
+          },
+          "key": "Country Name",
+          "fields": ["GDP_per_capita_USD"]
+        }
+      },
+      {"calculate": "datum.GDP_per_capita_USD", "as": "GDP_per_capita_USD"},
+      {"filter": "datum.GDP_per_capita_USD >= gdp_filter"}
+    ],
+    "mark": {"type": "geoshape"},
+    "encoding": {
+      "color": {
+        "field": "GDP_per_capita_USD",
+        "title": "gdp in usd",
+        "type": "quantitative",
+        "scale": {"type": "log"}
+      },
+      "tooltip": [
+        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+        {"field": "GDP_per_capita_USD", "type": "quantitative", "title": "gdp in usd"}
+      ]
+    }
+  }
