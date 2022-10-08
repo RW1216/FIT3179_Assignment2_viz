@@ -1,0 +1,33 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "title": {
+        "text": "Country with highest CO2 emission Normalized by Area",
+        "fontSize": 15
+      },
+    "data": {
+        "url": "data/processed_CO2.csv"
+    },
+    "transform": [
+        {"filter": "datum.Year == 2020"},
+        {"filter": "datum.CO2_emission_tons >= 40000000000"},
+        {"calculate": "datum.CO2_emission_tons/datum.Area", "as": "CO2_normalized"}
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Country",
+            "type": "nominal",
+            "sort": "y"
+        },
+        "y": {
+            "field": "CO2_normalized",
+            "type": "quantitative",
+            "title": "CO2 emission in tons"
+        },
+        "tooltip": [
+            {"field": "Country", "type": "nominal"},
+            {"field": "CO2_normalized", "type": "quantitative", "title": "CO2 emission in tons", "format": ",.2f"}
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "CO2 emission of major country over the years",
+        "fontSize": 15
+      },
+    "data": {
+        "url": "data/processed_CO2.csv"
+    },
+    "width": "container",
+    "transform": [
+        {"filter": "datum.Year >= 1800"},
+        {"filter": "datum.Country == 'China' || datum.Country == 'Japan' || datum.Country == 'United States of America' || datum.Country == 'Russia' || datum.Country == 'Germany' || datum.Country == 'United Kingdom' || datum.Country == 'India' || datum.Country == 'France'"},
+        {"calculate": "datum.CO2_emission_tons / datum.Area", "as": "CO2_emission_normalized"}
+    ],
+    "layer":[
+        {
+        "mark": {
+            "type": "line"
+        },
+        "encoding": {
+            "x": { "field": "Year", "type": "temporal"},
+            "y": { "field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized by area"}, 
+            "color": {"field": "Country", "type": "nominal"},
+            "tooltip": [
+                {"field": "Country", "type": "nominal"},
+                {"field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized", "format": ","}
+            ]
+        }
+    }
+]
+}
+    

@@ -1,0 +1,17 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "testing" },
+    "data": {
+    "url":
+    "data/CO2 emission by countries.csv"
+    },
+    "transform": [
+      {"filter": "datum.Year == 2020"}
+    ],
+    "mark": "point",
+    "encoding": {
+    "x": { "field": "Year", "type": "ordinal" },
+    "y": { "field": "Population(2022)", "type": "quantitative"}
+        }
+    }
+    
