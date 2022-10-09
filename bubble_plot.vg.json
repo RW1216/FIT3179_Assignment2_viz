@@ -58,7 +58,7 @@
                     {"field": "Country", "type": "nominal"},
                     {"field": "CO2_emission_million", "type": "quantitative", "title": "CO2 emission tons in million", "format": ",.2f"},
                     {"field": "Area", "type": "nominal", "title": "Area in km2", "format": ","},
-                    {"field": "GDP_per_capita_USD", "type": "nominal", "title": "GDP per capita USD", "format": ","}
+                    {"field": "GDP_per_capita_USD", "type": "nominal", "title": "GDP per capita USD", "format": ",.2f"}
                 ],
                 "opacity": { "value": 0.7}
             }
