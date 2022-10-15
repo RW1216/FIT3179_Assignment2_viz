@@ -1,16 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  
+  "width": 900,
+  "height":380,
   "title": {
-    "text": "CO2 emission in tons for each Country",
-    "fontSize": 19
+    "text": "CO2 emission in tons for each country",
+    "fontSize": 20
   },
   "data": {
     "url": "js/ne_110m.json",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
-  "width": 900,
-  "height":380,
   "projection": {"type": "equalEarth"},
   "layer": [
     {
@@ -19,6 +18,13 @@
         "format": {"type": "topojson", "feature": "oceans"}
       },
       "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
+    {
+      "data": {
+        "url": "js/ne_110m_graticules_30.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": "null", "stroke": "lightgray"}
     },
     {
       "transform": [
@@ -57,6 +63,41 @@
           {"field": "CO2_emission", "type": "quantitative", "title": "CO2 emossion in tons", "format": ".2f"}
         ]
       }
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "data/CO2_2020.csv"
+            },
+            "key": "Country",
+            "fields": ["CO2_emission_tons", "Area", "Country"]
+         }
+        },
+        {"calculate": "datum.CO2_emission_tons / datum.Area", "as": "for_text"},
+        {"filter": "datum.Country == 'United Kingdom'"},
+        {
+          "calculate": "'The highest CO2 emitting country;in 2020 are ' + datum['Country']",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw,';')",
+          "as": "text_annotation"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -15,
+        "dy": -152,
+        "baseline": "middle",
+        "fontSize": 9,
+        "fontStyle": "italic",
+        "fontWeight": "bold"
+      },
+      "encoding": {"text": {"field": "text_annotation"}}
     }
   ]
 }

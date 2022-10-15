@@ -2,8 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
     "title": {
-        "text": "Country with highest CO2 emission Normalized by Area",
-        "fontSize": 15
+        "text": "Country with highest CO2 emission normalized by area",
+        "fontSize": 18
       },
     "data": {
         "url": "data/processed_CO2.csv"
@@ -24,6 +24,19 @@
             "field": "CO2_normalized",
             "type": "quantitative",
             "title": "CO2 emission in tons"
+        },
+        "color": {
+            "field": "Country",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+                "domain": [
+                    "China", "Germany", "India", "Japan", "Russia", "United Kingdom", "United States of America"
+                ],
+                "range": [
+                    "#8c564b", "#17becf", "#e377c2", "#2ca02c", "#9467bd", "#d62728", "#bcbd22"
+                ]
+            }
         },
         "tooltip": [
             {"field": "Country", "type": "nominal"},

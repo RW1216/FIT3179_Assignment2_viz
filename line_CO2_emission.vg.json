@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "CO2 emission of major country over the years",
-        "fontSize": 15
+        "fontSize": 18
       },
     "data": {
         "url": "data/processed_CO2.csv"
@@ -15,19 +15,57 @@
     ],
     "layer":[
         {
-        "mark": {
-            "type": "line"
+            "mark": {
+                "type": "line"
+            },
+            "encoding": {
+                "x": { "field": "Year", "type": "temporal"},
+                "y": { "field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized by area"}, 
+                "color": {
+                    "field": "Country", 
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "China", "France", "Germany", "India", "Japan", "Russia", "United Kingdom", "United States of America"
+                        ],
+                        "range": [
+                            "#8c564b", "#1f77b4", "#17becf", "#e377c2", "#2ca02c", "#9467bd", "#d62728", "#bcbd22"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {"field": "Country", "type": "nominal"},
+                    {"field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized", "format": ","}
+                ]
+            }
         },
-        "encoding": {
-            "x": { "field": "Year", "type": "temporal"},
-            "y": { "field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized by area"}, 
-            "color": {"field": "Country", "type": "nominal"},
-            "tooltip": [
-                {"field": "Country", "type": "nominal"},
-                {"field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized", "format": ","}
-            ]
+        {
+            "transform": [
+                {"calculate": "datum.CO2_emission_tons / datum.Area", "as": "for_text"},
+                {"window": [{"op": "rank", "as":"ranking"}],
+                "sort": [{"field": "for_text", "order": "descending"}]
+            },
+            {"filter": "datum.ranking == 1"},
+            {
+                "calculate": "'The highest CO2 emitting country in 2020;are ' + datum['Country'] + ' with 321,783.23'",
+                "as": "text_annotation_raw"
+            },
+            {
+                "calculate": "split(datum.text_annotation_raw,';')",
+                "as": "text_annotation"
+            }
+        ],
+        "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": 50,
+            "dy": -84,
+            "baseline": "middle",
+            "fontSize": 10,
+            "fontStyle": "italic"
+        },
+        "encoding": {"text": {"field": "text_annotation"}}
         }
-    }
-]
+    ]
 }
     

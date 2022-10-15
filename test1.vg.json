@@ -1,17 +1,30 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": { "text": "testing" },
-    "data": {
-    "url":
-    "data/CO2 emission by countries.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height":380,
+  "title": {
+    "text": "CO2 emission in tons for each country",
+    "fontSize": 20
+  },
+  "data": {
+    "url": "js/ne_110m.json",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "js/oceans.topo.json",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
     },
-    "transform": [
-      {"filter": "datum.Year == 2020"}
-    ],
-    "mark": "point",
-    "encoding": {
-    "x": { "field": "Year", "type": "ordinal" },
-    "y": { "field": "Population(2022)", "type": "quantitative"}
-        }
+    {
+      "data": {
+        "url": "js/ne_110m_graticules_30.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": "null", "stroke": "lightgray"}
     }
-    
+  ]
+}

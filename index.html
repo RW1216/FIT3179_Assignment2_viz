@@ -24,21 +24,25 @@
 
 </head>
 
-<body>
+<body style="background-color: bisque;">
 
   <div class="page">
 
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <h1>
-          <span style="color: #ff0000; font-size: 60px;">CO2</span>
-          <span style="font-size: 50px;">&nbsp;Emission Statistics</span>
-        </h1>
-        <p style="font-size: 25px; text-align: center;">Shows the CO2 emission of different country and the trend</p>
+        <div class="title">
+          <h1>
+            <span style="color: #ff0000; font-size: 60px;">CO2</span>
+            <span style="font-size: 50px;">&nbsp;Emission Statistics</span>
+          </h1>
+          <p style="font-size: 25px; text-align: center;">Shows the CO2 emission of different country and the trend</p>
+        </div>
+
       </div>
     </div>
     <!-- end pure grid group -->
+    
 
     <!-- pure grid group -->
     <div class="pure-g">
@@ -50,15 +54,29 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="bar_chart" class="vis-container" align="left"></div>
+      <div class="pure-u-1-1">
+        <div id="bubble_plot" class="vis-container" align="center"></div>
       </div>
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2 style="text-align: center; font-size: 20px; margin-top: 50px;">Highest CO2 emission country</h2>
-          <p style="text-align: center; margin-left: 90px; margin-right: 90px;">Bar chart on the left shows the highest CO2 emitting 
-            countries normalized by the area. It is shown that United Kingdom, Germany and Japan has really high CO2 emission compared
-          to other countries. </p>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div class="center-box">
+          <h2 style="text-align: center; font-size: 20px;">Insight of 
+            <span style="color: purple;">GDP</span>, <span style="color:green;">Area</span> and 
+            <span style="color:#ff0000;">CO2</span> relationship</h2>
+
+          <p style="text-align: center; margin-left: 200px; margin-right: 200px; margin-bottom: 50px;">Some countries like
+            the United States of America, Russia or China has <span style="color: blue; font-weight: bold;">high</span> <span style="color: red; font-weight: bold;">CO2</span> 
+            emission and <span style="color: blue; font-weight: bold;">high</span> 
+            <span style="color: green; font-weight: bold;">area</span>. Countries like United Kingdom, Germany or Japan also 
+            has <span style="color: blue; font-weight: bold;">high</span> <span style="color: red; font-weight: bold;">CO2</span> emission 
+            but <span style="color: blue; font-weight: bold;">low</span> <span style="color: green; font-weight: bold;">area</span>, 
+            hence they produces <span style="color: blue; font-weight: bold;">more</span> 
+            <span style="color: red; font-weight: bold;">CO2</span> emission  relative to their 
+            land <span style="color: green; font-weight: bold;">area</span>. </p>
         </div>
       </div>
     </div>
@@ -67,13 +85,44 @@
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-2">
-        <div id="bubble_plot" class="vis-container" align="center"></div>
+        <div id="bar_chart" class="vis-container" align="center"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="right-box">
+          <h2 style="text-align: center; font-size: 20px;">Very high <span style="color: red;">CO2</span> emission</h2>
+          <p style="text-align: center; margin-left: 30px; margin-right: 30px;">United Kingdom, Germany, and Japan has
+          very <span style="color: blue; font-weight: bold;">high</span> <span style="color: red; font-weight: bold;">CO2</span> emission 
+          compared to other country. How is that even possible!!! We have to stop them from destroying the <span style="color: green; font-weight: bold;">earth</span>. </p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div class="left-box">
+          <h2 style="text-align: center; font-size: 20px;"><span style="color:#ff0000;">CO2</span> 
+            is increasing</h2>
+            <p style="text-align: center; margin-left: 30px; margin-right: 30px;">Throughout the years, 
+              CO2 emission of the country like United Kingdom, Germany or Japan has <span style="font-weight: bold; color: blue;">increased</span> 
+              significantly. Some country like France or United States has <span style="font-weight: bold; color: blue;">maintained</span> their CO2 
+              emission. </p>
+        </div>
       </div>
       <div class="pure-u-1-2">
         <div id="line_chart" class="vis-container" style="margin-left: 15px;"></div>
       </div>
     </div>
     <!-- end pure grid group -->
+
+    <hr>
+
+    <p style="font-size: 13px; text-align: center; font-weight: lighter;">The page was created to raise awareness of global warming. It was created
+    by Teh Rong Wen.</p>
+    <p style="font-size: 13px; text-align: center; font-weight: lighter;">For more information, please refer 
+      to <a href="https://www.who.int/">World Health Organisation</a></p>
+        
 
   </div> <!-- end page -->
 
@@ -83,7 +132,7 @@
     var spec3 = 'line_CO2_emission.vg.json'
     var spec4 = 'bar_CO2_emission_2020.vg.json'
   
-    vegaEmbed('#choropleth_map', spec1).then(function(result) {
+    vegaEmbed('#choropleth_map', spec1, { "actions": false }).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 

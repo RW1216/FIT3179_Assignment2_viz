@@ -1,13 +1,14 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "GDP and Area on CO2 emission in 2020",
-        "fontSize": 15
+        "text": "GDP and area on CO2 emission in 2020",
+        "fontSize": 20
       },
     "data": {
         "url": "data/merged.csv"
     },
-    "width": "container",
+    "width": 800,
+    "height":340,
     "params": [
         {
           "name": "CO2_filter",
@@ -30,13 +31,13 @@
         "x": {
             "field": "Area",
             "type": "quantitative",
-            "title": "Area",
+            "title": "Area in square km using square loot scaling",
             "scale": {"type": "sqrt", "domain": [1, 20000000]}
         },
         "y": {
             "field": "GDP_per_capita_USD",
             "type": "quantitative",
-            "title": "GDP per capita USD",
+            "title": "GDP per capita USD using square loot scaling",
             "scale": {"type": "sqrt", "domain": [1, 120000]}
         }
     },
@@ -49,15 +50,30 @@
                     "type": "quantitative",
                     "scale": {
                         "type": "threshold",
-                        "domain": [100, 1000, 10000, 100000],
-                        "range": [10, 40, 100, 200, 700]
+                        "domain": [100, 1000, 10000, 50000],
+                        "range": [10, 40, 100, 200, 600]
                     },
                     "title": "CO2 emission tons in million"
+                },
+                "color": {
+                    "condition": [
+                        {"test": "datum['Country'] == 'China'", "value": "#8c564b"},
+                        {"test": "datum['Country'] == 'France'", "value": "#1f77b4"},
+                        {"test": "datum['Country'] == 'Germany'", "value": "#17becf"},
+                        {"test": "datum['Country'] == 'India'", "value": "#e377c2"},
+                        {"test": "datum['Country'] == 'Japan'", "value": "#2ca02c"},
+                        {"test": "datum['Country'] == 'Russia'", "value": "#9467bd"},
+                        {"test": "datum['Country'] == 'United Kingdom'", "value": "#d62728"},
+                        {"test": "datum['Country'] == 'United States of America'", "value": "#bcbd22"},
+                        {"test": "datum['Country'] == 'Australia'", "value": "#fd8d3c"},
+                        {"test": "datum['Country'] == 'Canada'", "value": "#7b4173"}
+                    ],
+                    "value": "#7f7f7f"
                 },
                 "tooltip": [
                     {"field": "Country", "type": "nominal"},
                     {"field": "CO2_emission_million", "type": "quantitative", "title": "CO2 emission tons in million", "format": ",.2f"},
-                    {"field": "Area", "type": "nominal", "title": "Area in km2", "format": ","},
+                    {"field": "Area", "type": "nominal", "title": "Area in square km", "format": ","},
                     {"field": "GDP_per_capita_USD", "type": "nominal", "title": "GDP per capita USD", "format": ",.2f"}
                 ],
                 "opacity": { "value": 0.7}
@@ -68,12 +84,12 @@
             "type": "text",
             "align": "right",
             "baseline": "middle",
-            "dx": -18,
-            "fontSize": 11.5,
+            "dx": -15,
+            "fontSize": 10,
             "fontStyle": "italic"
             },
             "transform": [
-                {"filter": "datum.Country == 'China' || datum.Country == 'Russia' || datum.Country == 'United States of America'"}
+                {"filter": "datum.Country == 'China' || datum.Country == 'Russia' || datum.Country == 'United States of America' || datum.Country == 'United Kingdom' || datum.Country == 'Japan' || datum.Country == 'Germany' || datum.Country == 'India' || datum.Country == 'Australia' || datum.Country == 'Canada'"}
             ],
             "encoding": {
                 "text": {"field": "Country", "type": "nominal"},
