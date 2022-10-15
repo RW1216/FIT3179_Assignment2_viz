@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "GDP and area on CO2 emission in 2020",
-        "fontSize": 20
+        "fontSize": 22
       },
     "data": {
         "url": "data/merged.csv"

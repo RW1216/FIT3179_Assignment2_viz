@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "CO2 emission of major country over the years",
-        "fontSize": 18
+        "fontSize": 20
       },
     "data": {
         "url": "data/processed_CO2.csv"
@@ -35,7 +35,7 @@
                 },
                 "tooltip": [
                     {"field": "Country", "type": "nominal"},
-                    {"field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized", "format": ","}
+                    {"field": "CO2_emission_normalized", "type": "quantitative", "title": "CO2 emission normalized", "format": ",.2f"}
                 ]
             }
         },

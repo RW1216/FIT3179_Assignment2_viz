@@ -2,8 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
     "title": {
-        "text": "Country with highest CO2 emission normalized by area",
-        "fontSize": 18
+        "text": "Country with highest CO2 emission",
+        "fontSize": 20
       },
     "data": {
         "url": "data/processed_CO2.csv"
@@ -23,7 +23,7 @@
         "y": {
             "field": "CO2_normalized",
             "type": "quantitative",
-            "title": "CO2 emission in tons"
+            "title": "CO2 emission in tons normalized by area"
         },
         "color": {
             "field": "Country",

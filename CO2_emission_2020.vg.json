@@ -4,7 +4,7 @@
   "height":380,
   "title": {
     "text": "CO2 emission in tons for each country",
-    "fontSize": 20
+    "fontSize": 22
   },
   "data": {
     "url": "js/ne_110m.json",
