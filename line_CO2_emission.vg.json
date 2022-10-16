@@ -2,7 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "CO2 emission of major country over the years",
-        "fontSize": 20
+        "fontSize": 24,
+        "font": "Chillow"
       },
     "data": {
         "url": "data/processed_CO2.csv"
@@ -62,7 +63,7 @@
             "dy": -84,
             "baseline": "middle",
             "fontSize": 10,
-            "fontStyle": "italic"
+            "font": "Helvetica"
         },
         "encoding": {"text": {"field": "text_annotation"}}
         }

@@ -4,7 +4,8 @@
   "height":380,
   "title": {
     "text": "CO2 emission in tons for each country",
-    "fontSize": 22
+    "fontSize": 26,
+    "font": "Chillow"
   },
   "data": {
     "url": "js/ne_110m.json",
@@ -94,7 +95,7 @@
         "dy": -152,
         "baseline": "middle",
         "fontSize": 9,
-        "fontStyle": "italic",
+        "font": "Helvetica",
         "fontWeight": "bold"
       },
       "encoding": {"text": {"field": "text_annotation"}}

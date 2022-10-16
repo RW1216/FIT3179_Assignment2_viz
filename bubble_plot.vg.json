@@ -2,7 +2,8 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "GDP and area on CO2 emission in 2020",
-        "fontSize": 22
+        "fontSize": 26,
+        "font": "Chillow"
       },
     "data": {
         "url": "data/merged.csv"
@@ -86,7 +87,7 @@
             "baseline": "middle",
             "dx": -15,
             "fontSize": 10,
-            "fontStyle": "italic"
+            "font": "Helvetica"
             },
             "transform": [
                 {"filter": "datum.Country == 'China' || datum.Country == 'Russia' || datum.Country == 'United States of America' || datum.Country == 'United Kingdom' || datum.Country == 'Japan' || datum.Country == 'Germany' || datum.Country == 'India' || datum.Country == 'Australia' || datum.Country == 'Canada'"}

@@ -3,7 +3,8 @@
     "width": "container",
     "title": {
         "text": "Country with highest CO2 emission",
-        "fontSize": 20
+        "fontSize": 24,
+        "font": "Chillow"
       },
     "data": {
         "url": "data/processed_CO2.csv"
