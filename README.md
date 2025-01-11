@@ -4,7 +4,7 @@ I created this webpage as part of my university's Data Visualization course
 
 [Visit my Data Visualization webpage](https://rw1216.github.io/FIT3179_Assignment2_viz/)
 
-### About my visualizations
+## About my visualizations
 
 Visualization 1 (CO2 emission in tons for each countries) - It uses choropleth showing CO2 emission in tons for each countries. Placing the cursor over the country will show the country name and CO2 emission.
 
